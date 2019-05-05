@@ -1,0 +1,57 @@
+[
+  {
+    "trait": {
+      "en": "mind",
+      "th": "จิตใจ"
+    },
+    "desc": "This trait determines how we interact with our environment.",
+    "scale": [
+      { "en": "extraverted", "th": "เป็นคนเปิดเผย", "score": null },
+      { "en": "introverted", "th": "เป็นคนเก็บตัว", "score": null }
+    ]
+  },
+  {
+    "trait": {
+      "en": "energy",
+      "th": "พลังงาน"
+    },
+    "desc": "This trait shows where we direct our mental energy.",
+    "scale": [
+      { "en": "intuitive", "th": "มีวิสัยทัศน์", "score": null },
+      { "en": "observant", "th": "อยู่กับความเป็นจริง", "score": null }
+    ]
+  },
+  {
+    "trait": {
+      "en": "nature",
+      "th": "ธรรมชาติ"
+    },
+    "desc": "This trait determines how we make decisions and cope with emotions.",
+    "scale": [
+      { "en": "thinking", "th": "มีเหตุผล", "score": null },
+      { "en": "feeling", "th": "ใช้อารมณ์", "score": null }
+    ]
+  },
+  {
+    "trait": {
+      "en": "tactics",
+      "th": "กลยุทธ์"
+    },
+    "desc": "This trait reflects our approach to work, planning and decision-making.",
+    "scale": [
+      { "en": "judging", "th": "ช่างวางแผน", "score": null },
+      { "en": "prospecting", "th": "ชอบด้นสด", "score": null }
+    ]
+  },
+  {
+    "trait": {
+      "en": "identity",
+      "th": "ตัวตน"
+    },
+    "desc": "This trait underpins all others, showing how confident we are in our abilities and decisions.",
+    "scale": [
+      { "en": "assertive", "th": "กล้าแสดงออก", "score": null },
+      { "en": "turbulent", "th": "ระมัดระวัง", "score": null }
+    ]
+  }
+]

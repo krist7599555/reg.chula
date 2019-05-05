@@ -1,0 +1,35 @@
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease-out;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+.layout-enter-active,
+.layout-leave-active {
+  transition: opacity 0.2s;
+}
+.layout-enter,
+.layout-leave-active {
+  opacity: 0;
+}
+
+.slide-left-enter-active,
+.slide-left-leave-active,
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition: transform 0.2s;
+  position: absolute;
+  width: 100vw;
+}
+.slide-left-enter {
+  transform: translateX(100%);
+  position: absolute;
+  width: 100vw;
+}
+.slide-right-enter {
+  transform: translateX(-100%);
+  position: absolute;
+  width: 100vw;
+}
