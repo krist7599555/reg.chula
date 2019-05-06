@@ -33,7 +33,7 @@ app
   .use(mongo({ uri: process.env.MONGO_URL }))
   .use(api.routes())
   .use(api.allowedMethods());
-
+console.log("mongo:", process.env.MONGO_URL);
 console.log(
   api.stack.map(i => `${String(i.methods.slice(-1)).padEnd(5, ".")} ${i.path}`).join("\n")
 );
@@ -49,7 +49,7 @@ export async function ssr() {
 
   app.use(ctx => {
     ctx.status = 200;
-    ctx.respond = false; // Bypass Koa's built-in response handling
+    ctx.respond = false;
     nuxt.render(ctx.req, ctx.res);
   });
 }

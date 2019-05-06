@@ -6,7 +6,7 @@
     "removeComments": true,
     "noLib": false,
     "esModuleInterop": false,
-    "emitDecoratorMetadata": true,
+    "emitDecoratorMetadata": false,
     "experimentalDecorators": false,
     "target": "es6",
     "sourceMap": true,
@@ -15,25 +15,7 @@
     "resolveJsonModule": true,
     "lib": ["es6", "es2015.promise", "es2018", "dom"]
   },
-  "include": [
-    "**/*.ts",
-    "**/*.vue",
-    "server",
-    "server/api/.util",
-    "server/api/.test",
-    "server/api/.scaping",
-    "server/api/.auth",
-    "server/api/.config",
-    "server/api/.db",
-    "server/api/.google",
-    "server/api/.micro",
-    "server/api/.hugsnan",
-    "server/api/.mbti",
-    "server/api/.regchula",
-    "server/api/.types",
-    "server/api/auth/.line",
-    "server/api/auth/sso/.function"
-  ],
+  "include": ["**/*.ts", "**/*.vue", "server"],
   "exclude": ["node_modules"],
   "typeRoots": ["node_modules/@types"]
 }
