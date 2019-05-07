@@ -5,8 +5,8 @@ import * as logger from "koa-logger";
 import * as respond from "koa-respond";
 import cookie from "koa-cookie";
 import auth from "./auth";
-import reg from "./reg";
-import my_error from "./error";
+import reg from "./reg2";
+
 const router = new Router();
 router
   .prefix("/api")
@@ -14,7 +14,6 @@ router
   .use(skip(logger()).if(() => process.env.JEST))
   .get("/", ctx => ctx.ok("OK"))
   .use(respond())
-  .use(my_error())
   .use(auth.routes())
   .use(auth.allowedMethods())
   .use(reg.routes())
