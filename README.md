@@ -1,6 +1,15 @@
-# nuxt-template
+# REG.CHULA
 
-My lovely Nuxt.js project starter pack for full stack frontend and backend
+This is my dump full-stack web site for improving [reg.chula.ac.th](https://reg.chula.ac.th). hope you like this
+
+try
+
+```
+yarn install
+yarn dev
+```
+
+and go to [http://0.0.0.0:3000](http://0.0.0.0:3000) for website
 
 ## include
 
@@ -12,8 +21,13 @@ My lovely Nuxt.js project starter pack for full stack frontend and backend
 
 ## screenshot
 
-![home](assets/screenshot/home.png)
+![](assets/screenshot/1.png)
 
-![user](assets/screenshot/user.png)
+![](assets/screenshot/3.png)
 
-_setup database via [dotenv-extends](https://www.npmjs.com/package/dotenv-extended)_
+![](assets/screenshot/2.png)
+
+# About
+
+feel free to contact us
+090-020-6430
