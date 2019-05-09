@@ -90,3 +90,4 @@ yarn.lock
 # my building
 nuxt
 dist
+server/api/reg/grade_report/**.pdf

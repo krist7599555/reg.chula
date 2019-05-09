@@ -32,6 +32,7 @@ export default {
     // resolve(__dirname, "./plugins/vue-buefy")
   ],
   modules: [
+    // "nuxt-typescript",
     "nuxt-buefy",
     "@nuxtjs/pwa",
     "@nuxtjs/axios",
@@ -41,7 +42,9 @@ export default {
   styleResources: {
     scss: [resolve(__dirname, "./assets/scss/main.scss")]
   },
-  axios: {},
+  axios: {
+    baseURL: process.env.NODE_ENV == "production" ? "https://google.com" : "http://0.0.0.0:3000"
+  },
   buefy: {
     css: false,
     materialDesignIcons: false,
@@ -73,7 +76,8 @@ export default {
     acquireTimeoutMillis: 10000,
     idleTimeoutMillis: 30000
   }
-  // proxy: { // when seperate dev backend front end
-  //   "/api": "http://localhost:3001"
+  // proxy: {
+  //   // when seperate dev backend front end
+  //   "/api": "http://0.0.0.0:3000"
   // }
 };

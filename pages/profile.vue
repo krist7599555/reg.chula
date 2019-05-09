@@ -52,17 +52,29 @@ export default {
   name: "profile",
   layout: "chula",
   data() {
-    return {
-      profile: null
-    };
+    return {};
   },
-  async created() {
-    const profile = await axios
-      .get("/api/auth/sso/profile")
-      .then(res => res.data);
-    this.profile = profile;
-    this.$forceUpdate();
+  computed: {
+    profile() {
+      return this.$store.getters.user;
+    }
   },
+  async fetch({ store, $axios, redirect }) {
+    await $axios
+      .get("/api/profile")
+      .then(res => {
+        store.commit("setUser", res.data);
+      })
+      .catch(err => {
+        if (err.status == 401) {
+          redirect("/login");
+        } else {
+          console.error(err.response);
+          console.error(err.message);
+        }
+      });
+  },
+  async created() {},
   mounted() {
     console.log(";mounted");
   },

@@ -4,6 +4,8 @@
     "node_modules": true,
     "dist": true,
     "nuxt": true,
-    "yarn*": true
+    "yarn*": true,
+    "package-lock.json": true,
+    ".editorconfig": true
   }
 }

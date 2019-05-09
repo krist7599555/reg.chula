@@ -8,31 +8,16 @@ require("dotenv-extended").load({
 import * as Koa from "koa";
 import { Context, Request, Response } from "koa";
 import { Nuxt, Builder } from "nuxt";
-import * as mongo from "koa-mongo";
-import * as response from "koa-respond";
-import * as bodyParser from "koa-bodyparser";
-import * as cors from "koa2-cors";
-import * as send from "koa-send";
-import * as mount from "koa-mount";
-import * as logger from "koa-logger";
-import * as skip from "koa-ignore";
-import { resolve } from "path";
 
 const consola = require("consola");
 
-import api from "./api/index";
+import api from "./controllers/api";
 import config from "../nuxt.config";
 
 export const app = new Koa();
 
-app
-  .use(cors())
-  // .use(mount("/storage", ctx => send(ctx, ctx.path, { root: config.storagePath })))
-  .use(response())
-  .use(bodyParser())
-  .use(mongo({ uri: process.env.MONGO_URL }))
-  .use(api.routes())
-  .use(api.allowedMethods());
+app.use(api.routes()).use(api.allowedMethods());
+
 console.log("mongo:", process.env.MONGO_URL);
 console.log(
   api.stack.map(i => `${String(i.methods.slice(-1)).padEnd(5, ".")} ${i.path}`).join("\n")

@@ -44,7 +44,7 @@ export default {
       this.loading = true;
       axios
         .post(
-          "/api/auth/sso/login",
+          "/api/login",
           {
             username: this.username,
             password: this.password
@@ -58,7 +58,7 @@ export default {
           console.log(err.response.data);
           this.$toast.open({
             type: "is-danger",
-            message: _.get(err, "response.data.message", err.message)
+            message: _.get(err, "response.data", err.message)
           });
         })
         .finally(() => (this.loading = false));

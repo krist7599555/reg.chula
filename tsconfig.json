@@ -13,11 +13,16 @@
     "outDir": "./dist",
     "baseUrl": "./src",
     "resolveJsonModule": true,
-    "lib": ["es6", "es2015.promise", "es2018", "dom"]
+    "lib": ["es6", "es2015.promise", "es2018", "dom"],
+    "types": ["@types/node", "@nuxt/vue-app"],
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./*"]
+    }
   },
-  "files": ["server/index.d.ts"],
+  "files": ["server/globals.d.ts"],
   "include": ["**/*.ts", "**/*.vue", "server"],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "dist"],
   "typeRoots": ["node_modules/@types"],
   "compileOnSave": true
 }

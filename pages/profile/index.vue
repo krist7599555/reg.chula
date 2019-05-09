@@ -2,44 +2,53 @@
 div
   #profile-content.content(align='center')
     .profile-partition
+      div {{user}}
       .head-brand__wrapper: h5.head-brand
         b-icon(icon='file-alt' size='is-large')
         span PERSONAL
       .profile-fields.max-width-content
         b-field(label='เพศ' horizontal)
-          input.input.is-static(v-model='genderTH')
+          input.input.is-static(:value='user.genderTH' disabled)
           b-icon(icon='mars' pack='fas')
         b-field(label='ชื่อ' horizontal)
-          input.input.is-static(value='นาย กฤษฏิ์ พรไพรินทร์')
+          .field-body__stack
+            input.input.is-static(:value='`${user.titleTH} ${user.nameTH} ${user.surnameTH}`' disabled)
+            //- input.input.is-static(:value='`${user.titleTH} ${user.nameTH} ${user.surnameTH}`' disabled)
+            //- input.input.is-static(:value='`${user.titleEN} ${user.nameEN} ${user.surnameEN}`' disabled)
           b-icon(icon='user' pack='fas')
         b-field(label='คณะ' horizontal)
-          input.input.is-static(value='วิศวกรรมศาสตร์')
+          .field-body__stack
+            input.input.is-static(:value='user.facultyTH' disabled)
+            //- input.input.is-static(:value='user.facultyEN' disabled)
           b-icon(icon='cog' pack='fas')
-        b-field(label='ภาค/เอก' horizontal)
-          input.input.is-static(value='คอมพิวเตอร์')
-          b-icon(icon='code-branch' pack='fas')
+        //- b-field(label='ภาค' horizontal)
+        //-   input.input.is-static(:value='user.department' disabled)
+        //-   b-icon(icon='code-branch' pack='fas')
+        //- b-field(label='เอก' horizontal)
+        //-   input.input.is-static(:value='user.fieldOfStudy' disabled)
+        //-   b-icon(icon='code-branch' pack='fas')
     .profile-partition
       .head-brand__wrapper: h5.head-brand
         b-icon(icon='shield-alt' pack='fas' size='is-large')
         span PROTECTED
       .profile-fields.max-width-content
         b-field(label='รหัสนิสิต' horizontal)
-          input.input.is-static(value='6031301721')
+          input.input.is-static(:value='user.ouid' disabled)
           b-icon(icon='id-card-alt' pack='fas')
         b-field(label='เบอร์โทร' horizontal)
-          input.input.is-static(v-mask="'###-###-####'" icon='phone' size='is-static' v-model='phone')
+          input.input.is-static(v-mask="'###-###-####'" icon='phone' size='is-static' v-model='user.phone' placeholder="099-999-9999")
           b-icon(icon='phone' pack='fas')
         b-field(label='อีเมล' horizontal)
-          input.input.is-static(value='krist7599555@gmail.com')
+          input.input.is-static(v-model='user.email' placeholder='mymail@gmail.com')
           b-icon(icon='envelope' pack='fas')
         b-field(label='ศาสนา' horizontal)
-          input.input.is-static(value='พุทธ')
+          input.input.is-static(v-model='user.religien' placeholder='ไม่ระบุ')
           b-icon(icon='dharmachakra' pack='fas')
         b-field(label="การแพ้" horizontal)
-          input.input.is-static(value='ไก่, แตงโม, กุ้ง, แป้งฝุ่น')
+          input.input.is-static(v-model='alergy' placeholder='หมู, กุ้ง, แป้งฝุ่นม ถั่ว')
           b-icon(icon='utensils' pack='fas')
         b-field(label="การเจ็บป่วย" horizontal)
-          input.input.is-static(value='ไม่มี')
+          input.input.is-static(v-model='sickness' placeholder='ซึมเศร้า, G6PD')
           b-icon(icon='syringe' pack='fas')
     .profile-partition
       .head-brand__wrapper: h5.head-brand
@@ -47,14 +56,13 @@ div
         span EMERGENCY
       .profile-fields.max-width-content
         b-field(label="เบอร์ฉุกเฉิน" horizontal)
-          input.input.is-static(v-mask="'###-###-####'" icon='phone' size='is-static' v-model='phone')
+          input.input.is-static(v-model='user.emergencyPhone' v-mask="'###-###-####'" icon='phone' size='is-static' placeholder='099-999-9999')
           b-icon(icon='user-injured' pack='fas')
         b-field(label="ความเกี่ยวข้อง" horizontal)
-          input.input.is-static(value='แม่')
+          input.input.is-static(v-model='user.emergencyRelation' placeholder='แม่' disabled)
           b-icon(icon='notes-medical' pack='fas')
-
         b-field(label="ที่อยู่" horizontal)
-          b-input(type='textarea' size='is-static' value='232/192 หมู่ 6 ศรีจันทร์ 39 ต ในเมือง อ เมือง จ ขอนแก่น')
+          b-input(type='textarea' v-model='user.house' size='is-static' placeholder='11/12 หมู่ 6 ศรีจันทร์ 39 ต ในเมือง อ เมือง จ ขอนแก่น')
           b-icon(icon='home' pack='fas')
     .profile-partition
       .head-brand__wrapper: h5.head-brand
@@ -62,13 +70,13 @@ div
         span SOCIAL
       .profile-fields.max-width-content
         b-field(label='LINE' horizontal)
-          input.input.is-static(value='krist7599555')
+          input.input.is-static(value='krist7599555' disabled)
           b-icon(icon='line' pack='fab')
         b-field(label='Facebook' horizontal)
-          input.input.is-static(value="Krist Pornpairin")
+          input.input.is-static(value="Krist Pornpairin" disabled)
           b-icon(icon='facebook' pack='fab')
         b-field(label='Instagram' horizontal)
-          input.input.is-static(value='krist7599555')
+          input.input.is-static(value='krist7599555' disabled)
           b-icon(icon='instagram' pack='fab')
 
 
@@ -82,10 +90,26 @@ import { VueMaskDirective } from "v-mask";
 Vue.directive("mask", VueMaskDirective);
 export default {
   data() {
-    return {
-      genderTH: "ชาย",
-      phone: "090-020-6430"
-    };
+    return {};
+  },
+  computed: {
+    user: {
+      get() {
+        return this.$store.getters.user;
+      },
+      set(val) {
+        alert("not allow set value");
+        this.$forceUpdate();
+      }
+    }
+  },
+  watch: {
+    user: {
+      deep: true,
+      handler() {
+        console.log("MEE");
+      }
+    }
   }
 };
 </script>
@@ -115,6 +139,10 @@ $head-color: $primary;
       flex-basis: 0;
       flex-grow: 5;
       flex-shrink: 1;
+    }
+    .field-body__stack {
+      display: flex;
+      flex-direction: column;
     }
     .icon:last-child {
       padding-top: 0.6rem;
