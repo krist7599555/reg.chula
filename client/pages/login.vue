@@ -51,7 +51,7 @@ export default Vue.extend({
   methods: {
     async submit() {
       this.loading = true
-      this.$auth.loginWith('local', {
+      await this.$auth.loginWith('local', {
         data: {
           username: this.username,
           password: this.password
@@ -59,6 +59,7 @@ export default Vue.extend({
       }).then((res) => {
         console.log("FINISH")
       }).finally(() => (this.loading = false))
+      console.log
     }
   }
 })
