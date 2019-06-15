@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": ["esnext", "esnext.asynciterable", "dom"],
+    "esModuleInterop": true,
+    "experimentalDecorators": false,
+    "allowJs": true,
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "noEmit": true,
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./*"]
+    },
+    "skipLibCheck": true,
+    "types": ["@nuxt/vue-app", "@types/node", "nuxt-buefy/types"]
+  }
+  // "files": ["globals.d.ts"],
+  // "include": ["**/*.ts", "**/*.vue", "server"],
+  // "exclude": ["node_modules", "dist"],
+  // "typeRoots": [
+  //   "node_modules/@types",
+  //   "@nuxtjs",
+  //   "@types",
+  //   "@nuxtjs/axios/types",
+  //   "axios-retry",
+  //   "vuex/types",
+  //   "nuxt-buefy/types",
+  //   "@nuxt/vue-app",
+  //   "@types/node"
+  // ],
+  // "compileOnSave": true
+}

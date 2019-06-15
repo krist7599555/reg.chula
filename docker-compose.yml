@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:alpine
+    logging:
+      driver: none
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./client2:/app/fronend
+      - ./server:/app/backend
+    ports:
+      - '80:80'
+  # mongo:
+  #   image: mongo
+  #   volumes:
+  #     - /data/db:/data/db
+  #   ports:
+  #     # - 27017:27017
+  #   network_mode: host
+  #   environment:
+  #     - ROOT_URL=http://localhost
+  #     - MONGO_URL=mongodb://localhost:27017
+  #     - MONGO_HOST=host.docker.internal
+  server:
+    # links:
+    #   - mongo
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    expose:
+      - '3000'
+    volumes:
+      - ./server:/app/backend
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+
+  client:
+    build:
+      context: ./client2
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    expose:
+      - '8080'
+    volumes:
+      - ./client2:/app/frontend
+      - /app/frontend/node_modules/
+    # working_dir: /app/frontend
+    environment:
+      - NODE_ENV=development
+      - PORT=8080
+      - HOST=0.0.0.0

@@ -39,9 +39,9 @@ export function testUser(u: any): User {
     ouid: /^\d{10}$/,
     birth: /^[A-Z][a-z]+ \d+, \d{4}$/,
     titleEN: /^(Mr\.|Miss)$/,
-    nameEN: /^[A-Z][a-z]+$/,
-    surnameEN: /^[A-Z][a-z]+$/,
-    nationalID: /^\d{1} \d{4} \d{5} \d{2} \d{1}$/,
+    nameEN: /^[A-Za-z\-]+$/,
+    surnameEN: /^[A-Za-z\-]+$/,
+    nationalID: /^(\d{1} \d{4} \d{5} \d{2} \d{1}|[A-Z0-9]+)$/,
     year: y => _.inRange(y, 55, 65),
     facultyNUM: f => _.inRange(f, 20, 60)
   };
@@ -52,12 +52,19 @@ export function testUser(u: any): User {
 export function testGrade(g: any): Grade {
   const validate_obj = {
     ouid: /^\d{10}$/,
-    grade: /^([VWSUAF]|([BCD]\+?))$/,
+    grade: /^([VWSUAFMI]|([BCD]\+?))$/,
     courseID: /^\d{7}$/,
     courseABBR: /^[0-9A-Z\+\- /&]+$/,
     year: y => _.inRange(y, 2011, 2020),
     semester: s => _.inRange(s, 1, 4)
   };
+  // courseABBR is empty eg. ENG EMAG (5830226621)
+  if (_.isNaN(g.credit) && validate_obj.grade.test(g.courseABBR)) {
+    g.credit = Number(g.grade);
+    g.grade = g.courseABBR;
+    g.courseABBR = "-";
+  }
+  // console.log(g);
   validate_me(g, validate_obj);
   return g;
 }
