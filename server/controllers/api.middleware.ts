@@ -24,6 +24,8 @@ export default (): compose.Middleware<any> =>
       ctx.axios = axios;
       ctx.user = ctx.db.collection('user');
       ctx.grade = ctx.db.collection('grade');
+      ctx.courses = ctx.db.collection('courses');
+      ctx.posts = ctx.db.collection('posts');
       ctx.encrypt = crypto.encrypt;
       ctx.decrypt = crypto.decrypt;
       ctx.profile = () => ticketReader(ctx);

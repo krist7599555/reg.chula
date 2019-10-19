@@ -1,7 +1,7 @@
-import * as _ from "lodash";
-import * as assert from "http-assert";
-import { Collection } from "mongodb";
-import { USER_PUBLIC, FACULTY } from "./field";
+import * as _ from 'lodash';
+import * as assert from 'http-assert';
+import { Collection } from 'mongodb';
+import { USER_PUBLIC, FACULTY } from './field';
 
 function cartesian_product(...rest: any[]) {
   return _.reduce(rest, (a, b) => _.flatMap(a, x => _.map(b, y => x.concat([y]))), [[]]);
@@ -10,7 +10,7 @@ function cartesian_product(...rest: any[]) {
 function validate_me(obj: any, validate_obj: { [key: string]: RegExp | ((val: any) => boolean) }) {
   for (const [key, check] of _.toPairs(validate_obj)) {
     if (key in obj) {
-      if (typeof check == "function") {
+      if (typeof check == 'function') {
         assert(check(obj[key]), 500, `wrong ${key} format "${obj[key]}"`);
       } else {
         assert(check.test(obj[key]), 500, `wrong ${key} format "${obj[key]}"`);
@@ -21,13 +21,13 @@ function validate_me(obj: any, validate_obj: { [key: string]: RegExp | ((val: an
 }
 
 export function testUser(u: any): User {
-  if ("genderEN" in u) {
-    const genderTH = { Male: "ชาย", Female: "หญิง" };
-    const titleTH = { Male: "นาย", Female: "นางสาว" };
+  if ('genderEN' in u) {
+    const genderTH = { Male: 'ชาย', Female: 'หญิง' };
+    const titleTH = { Male: 'นาย', Female: 'นางสาว' };
     u.genderTH = genderTH[u.genderEN];
     u.titleTH = titleTH[u.genderEN];
   }
-  if ("ouid" in u) {
+  if ('ouid' in u) {
     u.year = Number(u.ouid.slice(0, 2));
     u.facultyNUM = Number(u.ouid.slice(-2));
     const { facultyABBR, facultyTH, facultyEN } = FACULTY[u.facultyNUM];
@@ -62,9 +62,8 @@ export function testGrade(g: any): Grade {
   if (_.isNaN(g.credit) && validate_obj.grade.test(g.courseABBR)) {
     g.credit = Number(g.grade);
     g.grade = g.courseABBR;
-    g.courseABBR = "-";
+    g.courseABBR = '-';
   }
-  // console.log(g);
   validate_me(g, validate_obj);
   return g;
 }

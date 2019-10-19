@@ -34,7 +34,7 @@
 </template>
 
 
-<script lang='js'>
+<script>
 import axios from 'axios'
 import * as _ from 'lodash'
 import Vue from 'vue'
@@ -51,14 +51,17 @@ export default Vue.extend({
   methods: {
     async submit() {
       this.loading = true
-      await this.$auth.loginWith('local', {
-        data: {
-          username: this.username,
-          password: this.password
-        }
-      }).then((res) => {
-        console.log("FINISH")
-      }).finally(() => (this.loading = false))
+      await this.$auth
+        .loginWith('local', {
+          data: {
+            username: this.username,
+            password: this.password
+          }
+        })
+        .then(res => {
+          console.log('FINISH')
+        })
+        .finally(() => (this.loading = false))
       console.log
     }
   }

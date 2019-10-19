@@ -9,7 +9,7 @@
         .columns
           .column.is-5
             div(style='max-width: 200px')
-              img.profile__image(src='https://graph.facebook.com/100001545890948/picture?width=300&height=300')
+              //- img.profile__image(src='https://graph.facebook.com/100001545890948/picture?width=300&height=300')
           .column
             .content.namehead__wrapper(v-if='profile' align='left')
               h1 {{profile.nameEN}} {{profile.surnameEN}}
@@ -19,7 +19,7 @@
           b-field
             b-switch(:value="lineUserId" type="is-success" @input='linelogin') Line
         br
-        .tabs.is-centered
+        //- .tabs.is-centered
           ul
             li
               nuxt-link(to='/profile')
@@ -36,7 +36,7 @@
               nuxt-link(to='/profile/event')
                 b-icon(icon='calendar-alt' pack='far')
                 span event
-            li
+            //- li
               nuxt-link(to='/profile/course')
                 //- b-icon(icon='graduation-cap' pack='fas')
                 //- b-icon(icon='chalkboard' pack='fas')
@@ -57,7 +57,7 @@ export default Vue.extend({
   computed: {
     profile() {
       // this.$data
-      return this.$store.getters.user
+      return this.$auth.user
     }
   },
   async fetch({ store, $axios, redirect }) {
@@ -69,7 +69,7 @@ export default Vue.extend({
       .catch(err => {
         console.log('PROFILE', err)
         // if (err.response.status == 401) {
-        //   redirect("/login");
+        redirect('/login')
         // } else {
         //   console.error(err.response);
         //   console.error(err.message);

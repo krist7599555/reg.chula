@@ -33,6 +33,7 @@ WORKDIR /app/frontend
 # COPY . /app/frontend
 # RUN yarn --pure-lockfile
 EXPOSE 8080
+RUN rm -rf node_modules/.cache
 RUN yarn install
 # RUN npm cache clean --force
 # RUN npm rebuild node-sass --force

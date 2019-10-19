@@ -1,8 +1,8 @@
-import * as Koa from "koa";
-import { Db, Collection } from "mongodb";
-import { AxiosInstance } from "axios";
+import * as Koa from 'koa';
+import { Db, Collection } from 'mongodb';
+import { AxiosInstance } from 'axios';
 
-declare module "koa" {
+declare module 'koa' {
   interface Context {
     // axios
     axios: AxiosInstance;
@@ -11,6 +11,8 @@ declare module "koa" {
     db: Db;
     user: Collection<User>;
     grade: Collection<Grade>;
+    courses: Collection<any>;
+    posts: Collection<any>;
 
     // simple crypto
     encrypt(str: string): string;
@@ -38,11 +40,11 @@ declare global {
     ouid: string;
     pwid?: string;
     nationalID?: string;
-    genderTH?: "ชาย" | "หญิง";
-    genderEN?: "Male" | "Female";
+    genderTH?: 'ชาย' | 'หญิง';
+    genderEN?: 'Male' | 'Female';
 
-    titleTH?: "นาย" | "นางสาว";
-    titleEN?: "Mr." | "Miss";
+    titleTH?: 'นาย' | 'นางสาว';
+    titleEN?: 'Mr.' | 'Miss';
     nameTH?: string;
     nameEN?: string;
     surnameTH?: string;

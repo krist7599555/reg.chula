@@ -8,7 +8,7 @@
 </template>
 
 
-<script lang='js'>
+<script>
 // import axios from "axios";
 // import * as _ from "lodash";
 // import { Component, Vue } from 'nuxt-property-decorator'

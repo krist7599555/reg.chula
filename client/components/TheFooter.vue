@@ -5,7 +5,7 @@
       .columns(style='max-width: 760px')
         .column.is-4
           figure.image.is-96x96(style='margin: 0; height: 80px')
-            img(src='https://www.chula.ac.th/wp-content/themes/chulalongkorn/assets/images/logo-chula-sub-white-240x120.png')
+            img(src='~assets/img/cu-white-240x120.png')
           div
             p.
               #[strong.has-text-white Create ] by #[a.has-text-link Krist Pornpairin.]
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style lang="scss" scoped>
@@ -55,9 +55,9 @@ li {
 .map:after {
   width: 100%;
   height: 100%;
-  content: "";
+  content: '';
   background: red
-    url("https://www.library.eng.chula.ac.th/assets/1.0.0/img/map.jpg");
+    url('https://www.library.eng.chula.ac.th/assets/1.0.0/img/map.jpg');
 
   top: 0;
   left: 0;

@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:alpine
+    logging:
+      driver: none
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./client:/app/fronend
+      - ./server:/app/backend
+    ports:
+      - '80:7777'
+
+  server
+    build:
+      context: ./server
+      dockerfile: Dockerfile.prod
+    ports:
+      - 3000:3000
+    expose:
+      - '3000'
+    volumes:
+      - ./server:/app/backend
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      MONGO_URL: mongodb://host.docker.internal:27017/testregchula
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.prod
+    ports:
+      - 8080:8080
+    expose:
+      - '8080'
+    volumes:
+      - ./client:/app/frontend
+      - /app/frontend/node_modules/
+    # working_dir: /app/frontend
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      - HOST=0.0.0.0

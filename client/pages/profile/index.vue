@@ -1,8 +1,8 @@
 <template lang='pug'>
 div
-  #profile-content.content(align='center')
+  //- div [[ {{user}} ]]
+  #profile-content.content(align='center' v-if='user')
     .profile-partition
-      div {{user}}
       .head-brand__wrapper: h5.head-brand
         b-icon(icon='file-alt' size='is-large')
         span PERSONAL
@@ -50,6 +50,9 @@ div
         b-field(label="การเจ็บป่วย" horizontal)
           input.input.is-static(v-model='sickness' placeholder='ซึมเศร้า, G6PD')
           b-icon(icon='syringe' pack='fas')
+        b-field(label="รอบอก" horizontal)
+          input.input.is-static(v-model='shirt' placeholder='38')
+          b-icon(icon='syringe' pack='fas')
     .profile-partition
       .head-brand__wrapper: h5.head-brand
         b-icon(icon='ambulance' pack='fas' size='is-large')
@@ -93,14 +96,8 @@ export default {
     return {}
   },
   computed: {
-    user: {
-      get() {
-        return this.$store.getters.user
-      },
-      set(val) {
-        alert('not allow set value')
-        this.$forceUpdate()
-      }
+    user() {
+      return this.$auth.user
     }
   },
   watch: {

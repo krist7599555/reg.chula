@@ -1,0 +1,14 @@
+FROM node:12-alpine
+ENV PORT 8080
+# ADD . /app/frontend
+WORKDIR /app/frontend
+
+COPY package.json .
+
+
+EXPOSE 8080
+RUN rm -rf node_modules/.cache
+RUN yarn install
+# RUN npm cache clean --force
+# RUN npm rebuild node-sass --force
+CMD ["yarn", "dev"]
